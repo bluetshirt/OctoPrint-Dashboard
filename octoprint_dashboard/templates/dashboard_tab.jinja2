@@ -410,7 +410,7 @@
     </div>
 
     <!-- File name -->
-    <div class="dashboardGridItem file" data-bind="visible: printerStateModel.isPrinting()">
+    <div class="dashboardGridItem file" data-bind="visible: printerStateModel.isPrinting() && dashboardSettings.showFileName()">
       <img class="dashboardIcon" src="plugin/dashboard/static/img/file-icon.png">
       <span id="fileInfo" data-bind="attr: { title: 'File' }, html: printerStateModel.filedisplay()"></span>
     </div>
