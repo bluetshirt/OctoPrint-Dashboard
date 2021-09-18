@@ -324,6 +324,8 @@ class DashboardPlugin(octoprint.plugin.SettingsPlugin,
 			showSensorInfo=False,
 			showJobControlButtons=False,
 			showFeedrate=False,
+			showTimeDetails=True,
+			showLayerDetails=True,
 			enableTempGauges=True,
 			# show the widgets in full screen
 			fsSystemInfo=True,
@@ -338,7 +340,11 @@ class DashboardPlugin(octoprint.plugin.SettingsPlugin,
 			fsFilament=True,
 			fsFeedrate=True,
 			fsWebCam=True,
+			fsTimeDetails=True,
+			fsLayerDetails=True,
 			# printingOnly: False = shown when printing or not printing, True = shown only when printing
+			printingOnly_TimeDetails=True,
+			printingOnly_LayerDetails=True,
 			printingOnly_SystemInfo=False,
 			printingOnly_JobControlButtons=False,
 			printingOnly_TempGauges=False,
@@ -419,7 +425,7 @@ class DashboardPlugin(octoprint.plugin.SettingsPlugin,
 
 				# version check: github repository
 				type="github_release",
-				user="j7126",
+				user="bluetshirt",
 				repo="OctoPrint-Dashboard",
 				current=self._plugin_version,
 
@@ -438,7 +444,7 @@ class DashboardPlugin(octoprint.plugin.SettingsPlugin,
 				],
 
 				# update method: pip
-				pip="https://github.com/j7126/OctoPrint-Dashboard/archive/{target_version}.zip"
+				pip="https://github.com/bluetshirt/OctoPrint-Dashboard/archive/{target_version}.zip"
 			)
 		)
 
