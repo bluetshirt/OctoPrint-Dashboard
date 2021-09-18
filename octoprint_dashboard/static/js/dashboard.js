@@ -111,6 +111,12 @@ $(function () {
         self.fsFeedrate = ko.computed(() => this.isFull() && this.settingsViewModel.settings.plugins.dashboard.fsFeedrate() || !this.isFull(), this);
         self.fsWebCam = ko.computed(() => this.isFull() && this.settingsViewModel.settings.plugins.dashboard.fsWebCam() || !this.isFull(), this);
 
+		self.fsTimeDetails = ko.computed(() => this.isFull() && this.settingsViewModel.settings.plugins.dashboard.fsTimeDetails() || !this.isFull(), this);
+		self.fsLayerDetails = ko.computed(() => this.isFull() && this.settingsViewModel.settings.plugins.dashboard.fsLayerDetails() || !this.isFull(), this);
+		self.fsFileName = ko.computed(() => this.isFull() && this.settingsViewModel.settings.plugins.dashboard.fsFileName() || !this.isFull(), this);		
+		self.fsBasicInfo = ko.computed(() => this.isFull() && this.settingsViewModel.settings.plugins.dashboard.fsBasicInfo() || !this.isFull(), this);
+		
+
         self.hls;
 
         //Scale down the file name if it is too long to fit one line #This should probably be placed somewhere else
@@ -437,7 +443,8 @@ $(function () {
             self.widgetsSettings = ko.observableArray([
                 { title: "FullScreen & FullBrowser Mode Buttons", setting: dashboardSettings.showFullscreen },
                 { title: "System Info", setting: dashboardSettings.showSystemInfo, settingsId: "#dashboardSysInfoSettingsModal", enableInFull: dashboardSettings.fsSystemInfo, printingOnly: dashboardSettings.printingOnly_SystemInfo },
-                { title: "Job Control Buttons", setting: dashboardSettings.showJobControlButtons, enableInFull: dashboardSettings.fsJobControlButtons, printingOnly: dashboardSettings.printingOnly_JobControlButtons },
+                { title: "Basic Info", setting: dashboardSettings.showBasicInfo, enableInFull: dashboardSettings.fsBasicInfo, printingOnly: dashboardSettings.printingOnly_BasicInfo },                
+  			    { title: "Job Control Buttons", setting: dashboardSettings.showJobControlButtons, enableInFull: dashboardSettings.fsJobControlButtons, printingOnly: dashboardSettings.printingOnly_JobControlButtons },
                 { title: "File Name", setting: dashboardSettings.showFileName, enableInFull: dashboardSettings.fsFileName, printingOnly: dashboardSettings.printingOnly_FileName },
 				{ title: "Time Details", setting: dashboardSettings.showTimeDetails, enableInFull: dashboardSettings.fsTimeDetails, printingOnly: dashboardSettings.printingOnly_TimeDetails },
                 { title: "Layer Details", setting: dashboardSettings.showLayerDetails, enableInFull: dashboardSettings.fsLayerDetails, printingOnly: dashboardSettings.printingOnly_LayerDetails },                { title: "Temperature Gauges", setting: dashboardSettings.enableTempGauges, settingsId: "#dashboardTempGaugeSettingsModal", enableInFull: dashboardSettings.fsTempGauges, printingOnly: dashboardSettings.printingOnly_TempGauges },

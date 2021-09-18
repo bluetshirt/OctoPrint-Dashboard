@@ -67,21 +67,23 @@
       </div>
 
       <!-- Current Profile, Connection state, and current status-->
-      <div class="dashboardGridItem" printer>
-        <img class="dashboardIcon" title="Printer profile" src="plugin/dashboard/static/img/printer-icon.png">
-        <span id="profileInfo"
-          data-bind="attr: { title: 'Profile name' }, html: printerProfilesModel.currentProfileData().name()"></span>
-      </div>
-      <div class="dashboardGridItem" printer>
-        <img class="dashboardIcon" title="Connection status" src="plugin/dashboard/static/img/usb-icon.png">
-        <span id="connectionInfo"
-          data-bind="attr: { title: 'Connection status' }, html: formatConnectionstatus(connectionModel.isOperational())"></span>
-      </div>
-      <div class="dashboardGridItem" printer>
-        <img class="dashboardIcon" title="Printer status" src="plugin/dashboard/static/img/status-icon.png">
-        <span id="stateInfo"
-          data-bind="attr: { title: 'Printer status' }, html: printerStateModel.stateString()"></span>
-      </div>
+	  <div data-bind="visible: (!dashboardSettings.printingOnly_BasicInfo() || printerStateModel.isPrinting()) && dashboardSettings.showBasicInfo() && fsBasicInfo()">
+		  <div class="dashboardGridItem" printer>
+			<img class="dashboardIcon" title="Printer profile" src="plugin/dashboard/static/img/printer-icon.png">
+			<span id="profileInfo"
+			  data-bind="attr: { title: 'Profile name' }, html: printerProfilesModel.currentProfileData().name()"></span>
+		  </div>
+		  <div class="dashboardGridItem" printer>
+			<img class="dashboardIcon" title="Connection status" src="plugin/dashboard/static/img/usb-icon.png">
+			<span id="connectionInfo"
+			  data-bind="attr: { title: 'Connection status' }, html: formatConnectionstatus(connectionModel.isOperational())"></span>
+		  </div>
+		  <div class="dashboardGridItem" printer>
+			<img class="dashboardIcon" title="Printer status" src="plugin/dashboard/static/img/status-icon.png">
+			<span id="stateInfo"
+			  data-bind="attr: { title: 'Printer status' }, html: printerStateModel.stateString()"></span>
+		  </div>
+	  </div>
 
       <!-- Job Control -->
       <div class="dashboardGridItem jobControl"
@@ -410,7 +412,7 @@
     </div>
 
     <!-- File name -->
-    <div class="dashboardGridItem file" data-bind="visible: printerStateModel.isPrinting() && dashboardSettings.showFileName()">
+    <div class="dashboardGridItem file" data-bind="visible: (!dashboardSettings.printingOnly_FileName() || printerStateModel.isPrinting()) && dashboardSettings.showFileName() && fsFileName()">
       <img class="dashboardIcon" src="plugin/dashboard/static/img/file-icon.png">
       <span id="fileInfo" data-bind="attr: { title: 'File' }, html: printerStateModel.filedisplay()"></span>
     </div>
@@ -469,13 +471,14 @@
       </div>
 
       <!-- Times -->
-      <div class="dashboardGridItem times" data-bind="visible: printerStateModel.isPrinting() && dashboardSettings.showTimeDetails()">
+	  
+      <div class="dashboardGridItem times" data-bind="visible: (!dashboardSettings.printingOnly_TimeDetails() || printerStateModel.isPrinting()) && dashboardSettings.showTimeDetails() && fsTimeDetails()">
         <img class="dashboardIcon" title="Estimated total print time"
           src="plugin/dashboard/static/img/print-time-estimated-icon.png">
         <span class="dashboardLarge" id="printTimeEstimated"
           data-bind="attr: { title: 'Estimated total print time' }, html: printerStateModel.estimatedPrintTimeString()"></span>
       </div>
-      <div class="dashboardGridItem times" data-bind="visible: printerStateModel.isPrinting() && dashboardSettings.showTimeDetails()">
+      <div class="dashboardGridItem times" data-bind="visible: (!dashboardSettings.printingOnly_TimeDetails() || printerStateModel.isPrinting()) && dashboardSettings.showTimeDetails() && fsTimeDetails()">
         <img class="dashboardIcon" title="ETA" src="plugin/dashboard/static/img/eta-icon.png">
         <div class="inline">
           <span class="dashboardLarge" id="eta"
@@ -484,7 +487,7 @@
             data-bind="attr: { title: 'Estimated time left' }, html: printerStateModel.printTimeLeftString() + ' left'"></span>
         </div>
       </div>
-      <div class="dashboardGridItem times" data-bind="visible: printerStateModel.isPrinting() && dashboardSettings.showTimeDetails()">
+      <div class="dashboardGridItem times" data-bind="visible: (!dashboardSettings.printingOnly_TimeDetails() || printerStateModel.isPrinting()) && dashboardSettings.showTimeDetails() && fsTimeDetails()">
         <img class="dashboardIcon" title="Current print time"
           src="plugin/dashboard/static/img/print-time-done-icon.png">
         <span class="dashboardLarge" id="printTimeDone"
@@ -492,20 +495,21 @@
       </div>
 
       <!-- Job & Progress -->
-      <div class="dashboardGridItem layerProgress" data-bind="visible: printerStateModel.isPrinting() && dashboardSettings.showLayerDetails()">
+	  
+      <div class="dashboardGridItem layerProgress" data-bind="visible: (!dashboardSettings.printingOnly_LayerDetails() || printerStateModel.isPrinting()) && dashboardSettings.showLayerDetails() && fsLayerDetails()">
         <img class="dashboardIcon" title="Current Layer" src="plugin/dashboard/static/img/layers-icon.png"
           alt="scroll to view more than forty layers">
         <span id="currentLayer" data-bind="attr: { title: 'Current Layer' }, html: currentLayer"></span>
         <span class="dashboardSmall" id="totalLayer"
           data-bind="attr: { title: 'Total Layers' }, html: '/' + totalLayer() + ' layers'"></span>
       </div>
-      <div class="dashboardGridItem layerProgress" data-bind="visible: printerStateModel.isPrinting() && dashboardSettings.showLayerDetails()">
+      <div class="dashboardGridItem layerProgress" data-bind="visible: (!dashboardSettings.printingOnly_LayerDetails() || printerStateModel.isPrinting()) && dashboardSettings.showLayerDetails() && fsLayerDetails()">
         <img class="dashboardIcon" title="Current height" src="plugin/dashboard/static/img/height-icon.png">
         <span id="currentHeight" data-bind="attr: { title: 'Current Height' }, html: currentHeight"></span>
         <span class="dashboardSmall" id="totalHeight"
           data-bind="attr: { title: 'Total Height' }, html: '/' + totalHeight() + 'mm'"></span>
       </div>
-      <div class="dashboardGridItem layerProgress" data-bind="visible: printerStateModel.isPrinting() && dashboardSettings.showLayerDetails()">
+      <div class="dashboardGridItem layerProgress" data-bind="visible: (!dashboardSettings.printingOnly_LayerDetails() || printerStateModel.isPrinting()) && dashboardSettings.showLayerDetails() && fsLayerDetails()">
         <img class="dashboardIcon" title="Layer Time" src="plugin/dashboard/static/img/layer-time-average-icon.png">
         <span id="averageLayerDuration"
           data-bind="attr: { title: 'Average Layer Time' }, html: averageLayerDuration()"></span>
